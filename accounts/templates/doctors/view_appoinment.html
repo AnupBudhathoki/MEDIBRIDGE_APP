@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h2 class="fw-bold text-primary">My Appointments</h2>
+        <p class="text-muted">Manage your appointments efficiently</p>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4" id="appointmentTabs" role="tablist">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#today">
+                Today
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#upcoming">
+                Upcoming
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#previous">
+                Previous
+            </button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+
+        <!-- Today's Appointments -->
+        <div class="tab-pane fade show active" id="today">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="mb-3">Today's Appointments</h5>
+
+                    <table class="table table-hover align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Anup Basnet</td>
+                                <td>10:00 AM - 10:30 AM</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-primary">Start Consultation</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sita Sharma</td>
+                                <td>11:30 AM - 12:00 PM</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-primary">Start Consultation</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="tab-pane fade" id="upcoming">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="mb-3">Upcoming Appointments</h5>
+
+                    <table class="table table-hover align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ram Karki</td>
+                                <td>21 Jan 2026</td>
+                                <td>2:00 PM - 2:30 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Nisha Rai</td>
+                                <td>22 Jan 2026</td>
+                                <td>4:00 PM - 4:30 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Previous Appointments -->
+        <div class="tab-pane fade" id="previous">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="mb-3">Previous Appointments</h5>
+
+                    <table class="table table-hover align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Report</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hari Thapa</td>
+                                <td>15 Jan 2026</td>
+                                <td>9:00 AM - 9:30 AM</td>
+                                <td>
+                                    <span class="badge bg-success">Submitted</span>
+                                    <a href="#" class="btn btn-sm btn-outline-primary ms-2">View</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mina Shrestha</td>
+                                <td>14 Jan 2026</td>
+                                <td>1:00 PM - 1:30 PM</td>
+                                <td>
+                                    <span class="badge bg-danger">Not Submitted</span>
+                                    <a href="#" class="btn btn-sm btn-outline-danger ms-2">Upload</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

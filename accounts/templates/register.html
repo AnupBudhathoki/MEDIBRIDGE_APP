@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="min-vh-100 d-flex align-items-center justify-content-center py-5"
+     style="background: linear-gradient(135deg, #e8f5e9, #e3f2fd);">
+    <div class="card shadow" style="max-width:500px; width:100%; border-radius:15px; overflow:hidden;">
+        <div class="text-white text-center p-4" style="background: linear-gradient(to right, #198754, #0d6efd);">
+            <h3 class="mb-0"><i class="fas fa-user-plus me-2"></i>Create Account</h3>
+            <p class="mb-0 opacity-75">Register to get started</p>
+        </div>
+        <div class="card-body p-4 bg-white">
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                    <div>{{ field.label }}: {{ error }}</div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">First Name</label>
+                        <input type="text" name="first_name" class="form-control"
+                               value="{{ form.first_name.value|default:'' }}" placeholder="First name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Last Name</label>
+                        <input type="text" name="last_name" class="form-control"
+                               value="{{ form.last_name.value|default:'' }}" placeholder="Last name" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Phone Number</label>
+                    <input type="tel" name="phone" class="form-control"
+                           value="{{ form.phone.value|default:'' }}" placeholder="98XXXXXXXX" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Email Address</label>
+                    <input type="email" name="email" class="form-control"
+                           value="{{ form.email.value|default:'' }}" placeholder="example@email.com" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Register as</label>
+                    <select name="role" class="form-select" required>
+                        <option value="">-- Select Role --</option>
+                        <option value="patient" {% if form.role.value == 'patient' %}selected{% endif %}>Patient</option>
+                        <option value="doctor" {% if form.role.value == 'doctor' %}selected{% endif %}>Doctor</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control" placeholder="Confirm password" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-center bg-light">
+            <small>Already have an account?
+                <a href="{% url 'log_in' %}" class="text-primary fw-semibold">Login</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - eSewa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e86de 0%, #0c56b6 100%);
+            padding: 25px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .success-icon {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .success-icon i {
+            font-size: 70px;
+            color: #27ae60;
+            background: #eafaf1;
+            padding: 20px;
+            border-radius: 50%;
+        }
+
+        .success-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .transaction-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .amount {
+            color: #27ae60;
+            font-size: 18px;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #2e86de;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1c70c5;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #2e86de;
+            border: 2px solid #2e86de;
+        }
+
+        .btn-outline:hover {
+            background: #f0f7ff;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .help-text {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .help-text a {
+            color: #2e86de;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">eSewa</div>
+            <div class="subtitle">Digital Wallet & Payment Gateway</div>
+        </div>
+
+        <div class="content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <h1 class="success-title">Payment Successful!</h1>
+            <p class="success-message">Thank you for your payment. Your transaction has been completed successfully.</p>
+
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">Transaction Code</span>
+                    <span class="detail-value">txn {{txn.transaction_code}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Paid to</span>
+                    <span class="detail-value">{{txn.product_code}}
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Payment Date</span>
+                    <span class="detail-value">{{txn.created_at}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Payment Method</span>
+                    <span class="detail-value">eSewa Wallet</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount</span>
+                    <span class="detail-value amount">NPR {{txn.total_amount}}</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                
+                <a href="{% url 'index' %}"><button class="btn btn-outline">
+                        <i class="fas fa-home"></i> Back to Home
+                    </button>
+                </a>
+            </div>
+
+            <p class="help-text">Need help? <a href="#">Contact Support</a></p>
+        </div>
+
+        <div class="footer">
+            &copy; 2023 eSewa Pvt. Ltd. All rights reserved.
+        </div>
+    </div>
+</body>
+
+</html>

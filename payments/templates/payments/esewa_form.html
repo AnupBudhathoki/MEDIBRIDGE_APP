@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5 text-center">
+    <div class="spinner-border text-success mb-3" role="status"></div>
+    <h5>Redirecting to eSewa...</h5>
+    <p class="text-muted">Please wait. Do not refresh this page.</p>
+
+    {# POST all required eSewa v2 fields with their exact names #}
+    <form id="esewa-form" method="POST" action="{{ payment_url }}">
+        <input type="hidden" name="amount"                   value="{{ form_data.amount }}">
+        <input type="hidden" name="tax_amount"               value="{{ form_data.tax_amount }}">
+        <input type="hidden" name="total_amount"             value="{{ form_data.total_amount }}">
+        <input type="hidden" name="transaction_uuid"         value="{{ form_data.transaction_uuid }}">
+        <input type="hidden" name="product_code"             value="{{ form_data.product_code }}">
+        <input type="hidden" name="product_service_charge"   value="{{ form_data.product_service_charge }}">
+        <input type="hidden" name="product_delivery_charge"  value="{{ form_data.product_delivery_charge }}">
+        <input type="hidden" name="success_url"              value="{{ form_data.success_url }}">
+        <input type="hidden" name="failure_url"              value="{{ form_data.failure_url }}">
+        <input type="hidden" name="signed_field_names"       value="{{ form_data.signed_field_names }}">
+        <input type="hidden" name="signature"                value="{{ form_data.signature }}">
+    </form>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    // Auto-submit the form to eSewa
+    document.getElementById('esewa-form').submit();
+</script>
+{% endblock %}

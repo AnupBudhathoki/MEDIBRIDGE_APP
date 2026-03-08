@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 mb-5">
+
+    <!-- Doctor Info Card -->
+    <div class="card shadow mb-4">
+        <div class="row g-0">
+            <div class="col-md-3 text-center p-4">
+                <img src="https://ui-avatars.com/api/?name={{ doctor.first_name }}+{{ doctor.last_name }}&background=0d6efd&color=fff&size=150"
+                     alt="Doctor" class="rounded-circle border" style="width:150px;height:150px;">
+            </div>
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h2 class="card-title">Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h2>
+                    <p><i class="fas fa-envelope text-muted me-2"></i>{{ doctor.email }}</p>
+                    <p><i class="fas fa-phone text-muted me-2"></i>{{ profile.phone }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Available Slots -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <h4 class="mb-4"><i class="fas fa-calendar-alt text-success me-2"></i>Available Appointment Slots</h4>
+
+            {% if slots %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Fee</th>
+                            <th>Book & Pay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for slot in slots %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ slot.start_time|time:"h:i A" }}</td>
+                            <td>{{ slot.end_time|time:"h:i A" }}</td>
+                            <td><strong>Rs {{ slot.fee }}</strong></td>
+                            <td>
+                                {% if request.user.is_authenticated %}
+                                <form method="POST" action="{% url 'start_esewa_payment' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="fee" value="{{ slot.fee }}">
+                                    <input type="hidden" name="slot_id" value="{{ slot.id }}">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-wallet me-1"></i>Pay with eSewa
+                                    </button>
+                                </form>
+                                {% else %}
+                                <a href="{% url 'log_in' %}" class="btn btn-outline-primary btn-sm">
+                                    Login to Book
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>No available slots for this doctor at the moment.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

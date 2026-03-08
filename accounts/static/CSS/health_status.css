@@ -1,0 +1,11 @@
+body {
+            background-color: #f5f9ff;
+        }
+        .status-good {
+            color: green;
+            font-weight: bold;
+        }
+        .status-warning {
+            color: orange;
+            font-weight: bold;
+        }

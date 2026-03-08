@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <table class="table table-bordered table-striped text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Doctor Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doctor in doctors %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</td>
+                        <td>{{ doctor.user.email }}</td>
+                        <td>{{ doctor.phone }}</td>
+                        <td>
+                            <a href="{% url 'appoinment_page' doctor.user.id %}" class="btn btn-sm btn-primary">Book Appointment</a>
+                            <a href="#" class="btn btn-sm btn-secondary">Reviews</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No doctors available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

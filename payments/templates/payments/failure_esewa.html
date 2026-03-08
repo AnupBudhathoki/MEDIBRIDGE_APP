@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5 d-flex justify-content-center">
+    <div class="card shadow" style="max-width:500px;width:100%;">
+        <div class="card-header text-white text-center py-4" style="background: linear-gradient(135deg, #ff6b6b, #c0392b);">
+            <h4 class="mb-0"><i class="fas fa-times-circle me-2"></i>Payment Failed</h4>
+        </div>
+        <div class="card-body p-4 text-center">
+            <div class="display-1 text-danger mb-3">❌</div>
+            <h5>Your payment could not be completed.</h5>
+            <p class="text-muted">Please try again or contact support if the issue persists.</p>
+            <div class="alert alert-warning text-start mt-3">
+                <strong>Possible reasons:</strong>
+                <ul class="mb-0 mt-2">
+                    <li>Insufficient eSewa balance</li>
+                    <li>Incorrect PIN entered</li>
+                    <li>Network connectivity issues</li>
+                    <li>Transaction timeout</li>
+                </ul>
+            </div>
+            <div class="d-grid gap-2 mt-4">
+                <a href="{% url 'doctors_list' %}" class="btn btn-danger">
+                    <i class="fas fa-redo me-2"></i>Try Again
+                </a>
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-home me-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

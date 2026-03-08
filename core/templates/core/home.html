@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="display-5 fw-bold">Quality Healthcare You Can Trust</h1>
+        <p class="lead mb-4">Professional doctors. Modern facilities. Convenient online booking.</p>
+        <a href="{% url 'doctors_list' %}" class="btn btn-primary btn-lg me-3">
+            <i class="fas fa-stethoscope me-2"></i>Book Appointment
+        </a>
+        <a href="{% url 'health_status' %}" class="btn btn-light btn-lg">
+            <i class="fas fa-heartbeat me-2"></i>My Health Records
+        </a>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Services</h2>
+            <p class="text-muted">Comprehensive medical care for you and your family</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <a href="{% url 'health_status' %}" class="text-decoration-none">
+                    <div class="card text-center p-4 shadow-sm h-100">
+                        <div class="display-5 mb-3">🩺</div>
+                        <h5>Health Records</h5>
+                        <p class="text-muted">View your medical history, reports, and checkups.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'doctors_list' %}" class="text-decoration-none">
+                    <div class="card text-center p-4 shadow-sm h-100">
+                        <div class="display-5 mb-3">👨‍⚕️</div>
+                        <h5>Find a Doctor</h5>
+                        <p class="text-muted">Browse specialists and book your appointment online.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-4 shadow-sm h-100">
+                    <div class="display-5 mb-3">💊</div>
+                    <h5>Pharmacy</h5>
+                    <p class="text-muted">Certified medicines available on-site and online.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold">Ready to See a Doctor?</h2>
+        <p class="lead">Book your appointment quickly and easily.</p>
+        <a href="{% url 'doctors_list' %}" class="btn btn-light btn-lg">
+            <i class="fas fa-calendar-plus me-2"></i>Make Appointment
+        </a>
+    </div>
+</section>
+{% endblock %}

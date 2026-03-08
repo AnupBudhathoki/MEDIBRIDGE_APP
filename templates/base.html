@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MediBridge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3') center/cover;
+            color: white;
+            padding: 110px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="{% url 'home' %}">
+            <i class="fas fa-heartbeat me-2"></i>MediBridge
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'doctors_list' %}">Doctors</a></li>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.userrole.role == 'patient' %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'health_status' %}">Health Records</a></li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-1"></i>
+                        {{ request.user.get_full_name|default:request.user.email }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% if request.user.userrole.role == 'doctor' %}
+                        <li><a class="dropdown-item" href="{% url 'ha_profile' %}"><i class="fas fa-id-card me-2"></i>My Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ha_home' %}"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'pat_profile' %}"><i class="fas fa-id-card me-2"></i>My Profile</a></li>
+                        {% endif %}
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="{% url 'log_out' %}"><i class="fas fa-sign-out-alt me-2"></i>Log Out</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'log_in' %}">Login</a></li>
+                <li class="nav-item"><a class="btn btn-light btn-sm ms-2" href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% block content %}{% endblock content %}
+
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+        <p class="mb-1">© 2026 MediBridge. All Rights Reserved.</p>
+        <small class="text-muted">Connecting patients with doctors</small>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

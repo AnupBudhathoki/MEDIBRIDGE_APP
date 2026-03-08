@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed - eSewa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #c0392b 100%);
+            padding: 25px 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .failure-icon {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .failure-icon i {
+            font-size: 70px;
+            color: #e74c3c;
+            background: #fdecea;
+            padding: 20px;
+            border-radius: 50%;
+        }
+        
+        .failure-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .failure-message {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .transaction-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .failure-reason {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: #2e86de;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1c70c5;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #2e86de;
+            border: 2px solid #2e86de;
+        }
+        
+        .btn-outline:hover {
+            background: #f0f7ff;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .help-text {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .help-text a {
+            color: #2e86de;
+            text-decoration: none;
+        }
+        
+        .possible-reasons {
+            margin-top: 25px;
+            padding: 15px;
+            background: #fdecea;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .possible-reasons h3 {
+            color: #c0392b;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .possible-reasons ul {
+            padding-left: 20px;
+            color: #7f8c8d;
+        }
+        
+        .possible-reasons li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">eSewa</div>
+            <div class="subtitle">Digital Wallet & Payment Gateway</div>
+        </div>
+        
+        <div class="content">
+            <div class="failure-icon">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            
+            <h1 class="failure-title">Payment Failed!</h1>
+            <p class="failure-message">We're sorry, but your transaction could not be completed. Please try again.</p>
+            
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID</span>
+                    <span class="detail-value">ES9876543210</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Merchant</span>
+                    <span class="detail-value">Nepal Electricity Authority</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date & Time</span>
+                    <span class="detail-value">Sept 19, 2023 - 14:25</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount</span>
+                    <span class="detail-value">NPR 2,500.00</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Failure Reason</span>
+                    <span class="detail-value failure-reason">Insufficient Balance</span>
+                </div>
+            </div>
+            
+            <div class="possible-reasons">
+                <h3>Possible reasons for failure:</h3>
+                <ul>
+                    <li>Insufficient balance in your eSewa account</li>
+                    <li>Incorrect PIN entered</li>
+                    <li>Network connectivity issues</li>
+                    <li>Temporary server problem</li>
+                    <li>Transaction timeout</li>
+                </ul>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-danger">
+                    <i class="fas fa-redo-alt"></i> Try Again
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-wallet"></i> Add Money to Wallet
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-home"></i> Back to Home
+                </button>
+            </div>
+            
+            <p class="help-text">Need help? <a href="#">Contact Support</a> or call +977 1-5970000</p>
+        </div>
+        
+        <div class="footer">
+            &copy; 2023 eSewa Pvt. Ltd. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to the failure icon
+            const failureIcon = document.querySelector('.failure-icon i');
+            failureIcon.style.transform = 'scale(0)';
+            
+            setTimeout(() => {
+                failureIcon.style.transition = 'transform 0.5s ease-out';
+                failureIcon.style.transform = 'scale(1)';
+            }, 100);
+            
+            // Add click handlers for buttons
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                    
+                    // Actual functionality would go here
+                    if (this.textContent.includes('Try Again')) {
+                        alert('Redirecting to payment page...');
+                    } else if (this.textContent.includes('Add Money')) {
+                        alert('Redirecting to add money page...');
+                    } else if (this.textContent.includes('Back to Home')) {
+                        alert('Redirecting to homepage...');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
